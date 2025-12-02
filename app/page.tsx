@@ -27,7 +27,7 @@ const App: React.FC = () => {
             </div>
 
             {/* Navbar */}
-            <nav className="w-full border-b border-white/5 bg-[#02040a]/80 backdrop-blur-xl sticky top-0 z-50">
+            <nav className="fixed top-0 left-0 w-full border-b border-white/5 bg-[#02040a]/80 backdrop-blur-xl z-50">
                 <div className="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
                     <Link href="/" className="flex items-center gap-3 group cursor-pointer">
                         <Image src="/assets/images/logo.png" alt="Binortrade" width={40} height={40} className="group-hover:scale-110 transition-transform" />

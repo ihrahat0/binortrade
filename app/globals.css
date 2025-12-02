@@ -303,3 +303,50 @@ details>summary::-webkit-details-marker {
 .primary-button:active {
   transform: translateY(0);
 }
+
+/* Glowing Border Animations for Active Trade Buttons */
+@keyframes glow-border {
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(16, 185, 129, 0.5),
+      0 0 10px rgba(16, 185, 129, 0.4),
+      0 0 15px rgba(16, 185, 129, 0.3),
+      inset 0 0 10px rgba(16, 185, 129, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.8),
+      0 0 20px rgba(16, 185, 129, 0.6),
+      0 0 30px rgba(16, 185, 129, 0.4),
+      inset 0 0 15px rgba(16, 185, 129, 0.3);
+  }
+}
+
+@keyframes glow-border-red {
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(244, 63, 94, 0.5),
+      0 0 10px rgba(244, 63, 94, 0.4),
+      0 0 15px rgba(244, 63, 94, 0.3),
+      inset 0 0 10px rgba(244, 63, 94, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 10px rgba(244, 63, 94, 0.8),
+      0 0 20px rgba(244, 63, 94, 0.6),
+      0 0 30px rgba(244, 63, 94, 0.4),
+      inset 0 0 15px rgba(244, 63, 94, 0.3);
+  }
+}
+
+.animate-glow-border {
+  animation: glow-border 2s ease-in-out infinite;
+  border: 2px solid rgba(16, 185, 129, 0.6);
+}
+
+.animate-glow-border-red {
+  animation: glow-border-red 2s ease-in-out infinite;
+  border: 2px solid rgba(244, 63, 94, 0.6);
+}

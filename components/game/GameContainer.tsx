@@ -127,6 +127,8 @@ export default function GameContainer() {
                         phase={phase}
                         balance={balance}
                         portfolio={portfolio}
+                        currentPrice={currentPrice}
+                        startPrice={startPrice}
                     />
                 </div>
             </div>
