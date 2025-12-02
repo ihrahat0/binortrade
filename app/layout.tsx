@@ -25,6 +25,9 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Binortrade | Next generation Trading",
   description: "Make your best trade here in 10 seconds",
+  other: {
+    cryptomus: "a2187119",
+  },
 };
 
 export default function RootLayout({

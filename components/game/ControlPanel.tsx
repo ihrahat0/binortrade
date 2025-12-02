@@ -101,7 +101,7 @@ export default function ControlPanel({ onBet, onCashOut, phase, balance, portfol
                     {portfolio && portfolio.direction === 'UP' && (
                         <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
                             <div className="bg-slate-900 border border-emerald-500/50 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-full shadow-lg shadow-emerald-500/20 flex items-center gap-1 whitespace-nowrap">
-                                <span className="text-slate-500">BET</span>
+                                <span className="text-slate-500">TRADED</span>
                                 ${portfolio.invested.toFixed(2)}
                             </div>
                         </div>
@@ -132,7 +132,7 @@ export default function ControlPanel({ onBet, onCashOut, phase, balance, portfol
                     {portfolio && portfolio.direction === 'DOWN' && (
                         <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
                             <div className="bg-slate-900 border border-rose-500/50 text-rose-400 text-[10px] font-bold px-2 py-0.5 rounded-full shadow-lg shadow-rose-500/20 flex items-center gap-1 whitespace-nowrap">
-                                <span className="text-slate-500">BET</span>
+                                <span className="text-slate-500">TRADED</span>
                                 ${portfolio.invested.toFixed(2)}
                             </div>
                         </div>

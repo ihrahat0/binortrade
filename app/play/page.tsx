@@ -41,10 +41,10 @@ export default function GamePage() {
                         </div>
 
                         <div className="flex items-center gap-6">
-                            <div className="hidden md:flex flex-col items-end">
+                            {/* <div className="hidden md:flex flex-col items-end">
                                 <div className="text-[9px] text-slate-500 font-bold uppercase tracking-widest font-mono">Balance</div>
                                 <div className="text-emerald-400 font-mono text-sm font-bold tracking-tight">$14,203.50</div>
-                            </div>
+                            </div> */}
                             <Link href="/" className="text-slate-400 hover:text-white text-sm font-mono transition-colors">
                                 EXIT
                             </Link>

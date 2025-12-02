@@ -42,10 +42,10 @@ const App: React.FC = () => {
                     </div>
 
                     <div className="flex items-center gap-6">
-                        <div className="hidden md:flex flex-col items-end">
+                        {/* <div className="hidden md:flex flex-col items-end">
                             <div className="text-[9px] text-slate-500 font-bold uppercase tracking-widest font-mono">Demo Balance</div>
                             <div className="text-emerald-400 font-mono text-sm font-bold tracking-tight">$14,203.50</div>
-                        </div>
+                        </div> */}
                         <Link href="/auth" className="primary-button">
                             SIGN UP
                         </Link>
@@ -53,7 +53,7 @@ const App: React.FC = () => {
                 </div>
             </nav>
 
-            <main className="relative z-10">
+            <main className="relative z-10 pt-16">
 
                 {/* Hero Section */}
                 <section className="pt-16 pb-24 md:pt-24 md:pb-32 px-6 max-w-[1400px] mx-auto border-b border-white/5">
@@ -80,7 +80,7 @@ const App: React.FC = () => {
 
                             <div className="flex flex-wrap gap-4 pt-4">
                                 <Link href="/play" className="primary-button flex items-center gap-3 group">
-                                    LAUNCH TERMINAL
+                                    LAUNCH TRADING
                                     <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                                 </Link>
                                 <button className="px-8 py-4 border border-white/10 hover:bg-white/5 text-slate-300 font-bold rounded transition-all flex items-center gap-2 font-mono text-sm tracking-wide">
@@ -229,7 +229,7 @@ const App: React.FC = () => {
             </main>
 
             {/* Footer */}
-            <footer className="border-t border-white/5 bg-[#010205] pt-20 pb-10">
+            <footer className="relative z-10 border-t border-white/5 bg-[#010205] pt-20 pb-10">
                 <div className="max-w-[1400px] mx-auto px-6">
                     <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-20">
                         <div className="col-span-1 md:col-span-2">
