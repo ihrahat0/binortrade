@@ -1,0 +1,305 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --bg-depth: #02040a;
+  --accent: #10b981;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Momotrust';
+  src: url('/assets/font/momotrust.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), sans-serif;
+  position: relative;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+.ui-font {
+  font-family: var(--font-jetbrains-mono), monospace;
+}
+
+/* Game Specific Wrapper */
+.game-wrapper {
+  font-family: 'Momotrust', Arial, Helvetica, sans-serif;
+  overflow: hidden;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Animated Gradient Background for Game */
+.game-wrapper::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background: linear-gradient(135deg,
+      #000000 0%,
+      #0a0a0a 25%,
+      #000000 50%,
+      #0f0f0f 75%,
+      #000000 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+/* Particle/Dot Pattern Overlay for Game */
+.game-wrapper::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(34, 211, 238, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(251, 191, 36, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(34, 197, 94, 0.06) 0%, transparent 50%),
+    radial-gradient(2px 2px at 20px 30px, rgba(148, 163, 184, 0.15), transparent),
+    radial-gradient(2px 2px at 60px 70px, rgba(148, 163, 184, 0.15), transparent),
+    radial-gradient(1px 1px at 50px 50px, rgba(148, 163, 184, 0.1), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(148, 163, 184, 0.1), transparent);
+  background-size:
+    800px 800px,
+    600px 600px,
+    700px 700px,
+    200px 200px,
+    200px 200px,
+    150px 150px,
+    150px 150px;
+  background-position:
+    0% 0%,
+    100% 100%,
+    50% 0%,
+    0% 0%,
+    40% 60%,
+    130px 270px,
+    70px 100px;
+  animation: particleFloat 20s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes particleFloat {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  33% {
+    transform: translate(30px, -30px);
+  }
+
+  66% {
+    transform: translate(-20px, 20px);
+  }
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Smooth transitions */
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glass morphism utility */
+.glass {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+/* Premium glow effect */
+.glow-effect {
+  box-shadow:
+    0 0 20px rgba(34, 211, 238, 0.1),
+    0 0 40px rgba(34, 211, 238, 0.05),
+    inset 0 0 20px rgba(34, 211, 238, 0.03);
+}
+
+.h-full {
+  height: 100%;
+}
+
+/* --- Landing Page Styles --- */
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes loading-bar {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-loading-bar {
+  animation: loading-bar 4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 40s linear infinite;
+}
+
+.feature-card {
+  background: linear-gradient(180deg, rgba(20, 25, 40, 0.4) 0%, rgba(10, 12, 20, 0.6) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s ease;
+}
+
+.feature-card:hover {
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 0 30px -5px rgba(16, 185, 129, 0.1);
+  transform: translateY(-2px);
+}
+
+.grid-bg {
+  background-size: 50px 50px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+details>summary {
+  list-style: none;
+}
+
+details>summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Auth Form Inputs */
+.input-field {
+  width: 100%;
+  background-color: #02040a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 2.5rem;
+  padding-right: 1rem;
+  color: white;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.5);
+}
+
+.input-field::placeholder {
+  color: #475569;
+}
+
+/* Primary Button with Custom Background */
+.primary-button {
+  background-image: url('/assets/images/button-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  font-weight: bold;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 40px -10px rgba(16, 185, 129, 0.4);
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  border: none;
+  cursor: pointer;
+}
+
+.primary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 50px -10px rgba(16, 185, 129, 0.6);
+}
+
+.primary-button:active {
+  transform: translateY(0);
+}
