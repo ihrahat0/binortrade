@@ -11,7 +11,7 @@ export default function TopBar({ balance }: TopBarProps) {
                 <div className="w-8 h-8 bg-emerald-500/20 rounded-lg flex items-center justify-center border border-emerald-500/30">
                     <span className="text-emerald-400 font-bold text-xs">ET</span>
                 </div>
-                <div className="flex flex-col">
+                <div className="hidden md:flex flex-col">
                     <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Balance</span>
                     <span className="text-white font-mono font-bold">${balance.toFixed(2)}</span>
                 </div>

@@ -9,6 +9,9 @@ import { Home, TrendingUp, Settings, LogOut, Menu, X, BarChart3, Trophy, Wallet 
 interface SidebarProps {
     currentPage?: string;
     mobileOnly?: boolean; // New prop to control desktop visibility
+    isOpen?: boolean;
+    setIsOpen?: (isOpen: boolean) => void;
+    hideMobileToggle?: boolean;
 }
 
 const menuItems = [
@@ -20,42 +23,54 @@ const menuItems = [
     { icon: Settings, label: 'Settings', href: '#', id: 'settings' },
 ];
 
-export default function Sidebar({ currentPage = 'trade', mobileOnly = false }: SidebarProps) {
-    const [isOpen, setIsOpen] = useState(false);
+export default function Sidebar({
+    currentPage = 'trade',
+    mobileOnly = false,
+    isOpen: externalIsOpen,
+    setIsOpen: externalSetIsOpen,
+    hideMobileToggle = false
+}: SidebarProps) {
+    const [internalIsOpen, setInternalIsOpen] = useState(false);
+
+    // Use external state if provided, otherwise use internal state
+    const isOpen = externalIsOpen !== undefined ? externalIsOpen : internalIsOpen;
+    const setIsOpen = externalSetIsOpen || setInternalIsOpen;
 
     return (
         <>
             {/* Mobile Toggle Button - Right Side */}
-            <motion.button
-                onClick={() => setIsOpen(!isOpen)}
-                className="lg:hidden fixed top-4 right-4 z-[60] w-12 h-12 bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-xl flex items-center justify-center text-white shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 transition-all"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-            >
-                <AnimatePresence mode="wait">
-                    {isOpen ? (
-                        <motion.div
-                            key="close"
-                            initial={{ rotate: -90, opacity: 0 }}
-                            animate={{ rotate: 0, opacity: 1 }}
-                            exit={{ rotate: 90, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                        >
-                            <X className="w-6 h-6" />
-                        </motion.div>
-                    ) : (
-                        <motion.div
-                            key="menu"
-                            initial={{ rotate: 90, opacity: 0 }}
-                            animate={{ rotate: 0, opacity: 1 }}
-                            exit={{ rotate: -90, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                        >
-                            <Menu className="w-6 h-6" />
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </motion.button>
+            {!hideMobileToggle && (
+                <motion.button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="lg:hidden fixed top-4 right-4 z-[60] w-12 h-12 bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-xl flex items-center justify-center text-white shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 transition-all"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    <AnimatePresence mode="wait">
+                        {isOpen ? (
+                            <motion.div
+                                key="close"
+                                initial={{ rotate: -90, opacity: 0 }}
+                                animate={{ rotate: 0, opacity: 1 }}
+                                exit={{ rotate: 90, opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                            >
+                                <X className="w-6 h-6" />
+                            </motion.div>
+                        ) : (
+                            <motion.div
+                                key="menu"
+                                initial={{ rotate: 90, opacity: 0 }}
+                                animate={{ rotate: 0, opacity: 1 }}
+                                exit={{ rotate: -90, opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                            >
+                                <Menu className="w-6 h-6" />
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </motion.button>
+            )}
 
             {/* Overlay for mobile */}
             <AnimatePresence>

@@ -85,6 +85,12 @@ export default function ControlPanel({ onBet, onCashOut, phase, balance, portfol
                 />
             </div>
 
+            {/* Mobile Balance Display */}
+            <div className="md:hidden flex items-center justify-between bg-slate-900/50 px-3 py-2 rounded border border-slate-800">
+                <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Balance</span>
+                <span className="text-emerald-400 font-mono font-bold text-sm">${balance.toFixed(2)}</span>
+            </div>
+
             {/* Potential Payout Display - Only show when no active trade */}
             {/* {!portfolio && (
                 <div className="text-center py-1 bg-slate-900/50 rounded border border-slate-800">
