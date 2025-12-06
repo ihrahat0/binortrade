@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 
 interface BottomNavProps {
@@ -11,12 +11,31 @@ interface BottomNavProps {
 }
 
 export default function BottomNav({ activeTab, onTabChange }: BottomNavProps) {
+    const router = useRouter();
+    const pathname = usePathname();
+
     const tabs = [
-        { id: 'trade', icon: '/assets/icons/trading.png', label: 'Trade', href: null },
-        { id: 'history', icon: '/assets/icons/history.png', label: 'History', href: null },
+        { id: 'trade', icon: '/assets/icons/trading.png', label: 'Trade', href: '/play' },
+        { id: 'history', icon: '/assets/icons/history.png', label: 'History', href: '/history' },
         { id: 'user', icon: '/assets/icons/user.png', label: 'User', href: '/account' },
         { id: 'settings', icon: '/assets/icons/setting.png', label: 'Settings', href: null },
     ];
+
+    const handleTabClick = (tab: typeof tabs[0]) => {
+        // Settings opens sidebar, doesn't navigate
+        if (tab.id === 'settings') {
+            onTabChange(tab.id);
+            return;
+        }
+
+        // Navigate to the tab's page if it has an href
+        if (tab.href && pathname !== tab.href) {
+            router.push(tab.href);
+        }
+
+        // Always call onTabChange to update local state
+        onTabChange(tab.id);
+    };
 
     return (
         <div className="fixed bottom-0 left-0 right-0 z-50 px-4 pb-4 pt-8 lg:hidden pointer-events-none">
@@ -29,8 +48,15 @@ export default function BottomNav({ activeTab, onTabChange }: BottomNavProps) {
                     const isActive = activeTab === tab.id;
                     const isTrade = tab.id === 'trade';
 
-                    const content = (
-                        <>
+                    return (
+                        <button
+                            key={tab.id}
+                            onClick={() => handleTabClick(tab)}
+                            className={`
+                                relative flex flex-col items-center justify-center w-16 h-full transition-all duration-100
+                                ${isActive ? 'text-emerald-400' : 'text-slate-500'}
+                            `}
+                        >
                             {/* Active Indicator Background */}
                             {isActive && (
                                 <motion.div
@@ -83,35 +109,6 @@ export default function BottomNav({ activeTab, onTabChange }: BottomNavProps) {
                                     transition={{ duration: 0.1 }}
                                 />
                             )}
-                        </>
-                    );
-
-                    // If tab has href, use Link, otherwise use button
-                    if (tab.href) {
-                        return (
-                            <Link
-                                key={tab.id}
-                                href={tab.href}
-                                className={`
-                                    relative flex flex-col items-center justify-center w-16 h-full transition-all duration-100
-                                    ${isActive ? 'text-emerald-400' : 'text-slate-500'}
-                                `}
-                            >
-                                {content}
-                            </Link>
-                        );
-                    }
-
-                    return (
-                        <button
-                            key={tab.id}
-                            onClick={() => onTabChange(tab.id)}
-                            className={`
-                                relative flex flex-col items-center justify-center w-16 h-full transition-all duration-100
-                                ${isActive ? 'text-emerald-400' : 'text-slate-500'}
-                            `}
-                        >
-                            {content}
                         </button>
                     );
                 })}

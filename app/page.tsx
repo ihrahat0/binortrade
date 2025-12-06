@@ -5,8 +5,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import RealTimeTrade from '@/components/RealTimeTrade';
 import Sidebar from '@/components/Sidebar';
+import { useAuth } from '@/hooks/useAuth';
 
 const App: React.FC = () => {
+    const { user } = useAuth();
     return (
         <div className="min-h-screen text-slate-200 selection:bg-emerald-500/30 overflow-x-hidden relative">
 
@@ -46,9 +48,15 @@ const App: React.FC = () => {
                             <div className="text-[9px] text-slate-500 font-bold uppercase tracking-widest font-mono">Demo Balance</div>
                             <div className="text-emerald-400 font-mono text-sm font-bold tracking-tight">$14,203.50</div>
                         </div> */}
-                        <Link href="/auth" className="primary-button">
-                            SIGN UP
-                        </Link>
+                        {user ? (
+                            <Link href="/account" className="primary-button">
+                                ACCOUNT
+                            </Link>
+                        ) : (
+                            <Link href="/auth" className="primary-button">
+                                SIGN UP
+                            </Link>
+                        )}
                     </div>
                 </div>
             </nav>
